@@ -14,7 +14,7 @@ spring:
           - id: rewritepath_route
             uri: lb://hic
             predicates:
-            - Path=/hic/v1/{segement}
+            - Path=/hic/v1/{segment}
             - Host=hic:9000
             filters:
             #- StripPrefix=2
