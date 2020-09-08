@@ -15,7 +15,7 @@ spring:
             uri: lb://hic
             predicates:
             - Path=/hic/**
-            - Host=hic:3456
+            - Host=hic:9000
             filters:
             - RewritePath=/hic/(?<segment>.*), /$\{segment}
 
