@@ -32,3 +32,9 @@ endpoints:
     shutdown:
         enabled: true
 
+#actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: gateway
