@@ -21,9 +21,9 @@ spring:
             #- RewritePath=/hic/(?<segment>.*), /$\{segment}
 
 #ribbon
-gateway:
+hic:
     ribbon:
-        NFLoadBalancerRuleClassName: BestAvailableRule
+        NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
 
 #eureka
 eureka:
