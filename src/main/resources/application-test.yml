@@ -14,10 +14,11 @@ spring:
           - id: rewritepath_route
             uri: lb://hic
             predicates:
-            - Path=/hic/**
+            - Path=/hic/v1/**
             - Host=hic:9000
             filters:
-            - RewritePath=/hic/(?<segment>.*), /$\{segment}
+            - StripPrefix=2
+            #- RewritePath=/hic/(?<segment>.*), /$\{segment}
 
 #eureka
 eureka:
@@ -31,10 +32,3 @@ eureka:
 endpoints:
     shutdown:
         enabled: true
-
-#actuator
-management:
-  endpoints:
-    web:
-      exposure:
-        include: gateway
