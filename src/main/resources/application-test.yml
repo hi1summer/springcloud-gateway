@@ -14,12 +14,16 @@ spring:
           - id: rewritepath_route
             uri: lb://hic
             predicates:
-            - Path=/hic/v1/{segment}
+            - Path=/hic/v1/**
             - Host=hic:9000
             filters:
-            #- StripPrefix=2
-            - SetPath=/{segment}
+            - StripPrefix=2
             #- RewritePath=/hic/(?<segment>.*), /$\{segment}
+
+#ribbon
+hic:
+    ribbon:
+        NFLoadBalancerRuleClassName: BestAvailableRule
 
 #eureka
 eureka:
