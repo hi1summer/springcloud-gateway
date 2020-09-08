@@ -1,6 +1,6 @@
 #basic
 server:
-  port: 3456
+  port: 9000
   
 #log4j2
 logging:
