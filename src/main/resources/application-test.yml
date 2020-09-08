@@ -21,7 +21,7 @@ spring:
             #- RewritePath=/hic/(?<segment>.*), /$\{segment}
 
 #ribbon
-hic:
+gateway:
     ribbon:
         NFLoadBalancerRuleClassName: BestAvailableRule
 
