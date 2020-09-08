@@ -29,12 +29,10 @@
 		<Logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="error" />
 		<Logger name="org.hibernate.validator.internal.util.Version" level="warn" />
 		<Logger name="org.springframework.boot.actuate.endpoint.jmx" level="warn"/>
-		<Logger name="org.springframework.cloud.gateway" level="trace"/>
-		<Logger name="org.springframework.http.server.reactive" level="trace"/>
-		<Logger name="org.springframework.web.reactive" level="trace"/>
-		<Logger name="org.springframework.boot.autoconfigure.web" level="trace"/>
-		<Logger name="reactor.netty" level="trace"/>
-		<Logger name="redisratelimiter" level="trace"/>
+		<Logger name="org.springframework.cloud.gateway" level="debug"/>
+		<Logger name="org.springframework.http.server.reactive" level="debug"/>
+		<Logger name="org.springframework.web.reactive" level="debug"/>
+		<Logger name="reactor.netty" level="debug"/>
 		<Root level="info">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="RollingFile" />
