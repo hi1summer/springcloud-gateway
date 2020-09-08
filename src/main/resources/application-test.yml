@@ -14,10 +14,11 @@ spring:
           - id: rewritepath_route
             uri: lb://hic
             predicates:
-            - Path=/hic/v1/**
+            - Path=/hic/v1/{segement}
             - Host=hic:9000
             filters:
-            - StripPrefix=2
+            #- StripPrefix=2
+            - SetPath=/{segment}
             #- RewritePath=/hic/(?<segment>.*), /$\{segment}
 
 #eureka
