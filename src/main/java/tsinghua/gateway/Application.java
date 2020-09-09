@@ -22,7 +22,7 @@ public class Application {
 
             @Override
             public Mono<String> resolve(ServerWebExchange exchange) {
-                String ipString = exchange.getRequest().getLocalAddress()
+                String ipString = exchange.getRequest().getRemoteAddress()
                         .getAddress().getHostAddress();
                 System.out.println(ipString);
                 return Mono.just(ipString);
