@@ -13,6 +13,9 @@ spring:
       host: host.docker.internal
   cloud:
     gateway:
+      httpclient:
+        connect-timeout: 5000
+        response-timeout: 5s
       routes:
           - id: rewritepath_route
             uri: lb://hic

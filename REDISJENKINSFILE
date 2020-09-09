@@ -1,0 +1,14 @@
+        stage('redis') {
+            steps {
+                script{
+                    try{
+                        powershell "docker rm -f redis"
+                    }
+                    catch(exc){
+                        echo 'no redis'
+                    }
+                    powershell "docker pull redis:latest"
+                    powershell "docker run -d --name=redis -p 6379:6379 redis:latest"
+                }
+            }
+        }
