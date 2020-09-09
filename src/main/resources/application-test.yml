@@ -26,8 +26,8 @@ spring:
             - StripPrefix=2
             - name: RequestRateLimiter
               args:
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 2
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 20
                 key-resolver: "#{@ipResolver}"
             #- RewritePath=/hic/(?<segment>.*), /$\{segment}
 
