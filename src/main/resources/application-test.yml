@@ -1,6 +1,6 @@
 #basic
 server:
-  port: 9000
+  port: 9002
   
 #log4j2
 logging:
@@ -15,13 +15,14 @@ spring:
             uri: lb://hic
             predicates:
             - Path=/hic/v1/**
-            - Host=hic:9000
+            - Host=hic:9002
             filters:
             - StripPrefix=2
-            - name: Hystrix
-                args:
-                  name: fallbackcmd
-                  fallbackUri: forward:/fallback
+            - name: RequestRateLimiter
+              args:
+                request-rate-limiter.replenishRate: 1
+                request-rate-limiter.burstCapacity: 1
+                key-resolver: "#{@ipResolver}"
             #- RewritePath=/hic/(?<segment>.*), /$\{segment}
 
 #eureka
@@ -38,12 +39,3 @@ eureka:
 hic:
     ribbon:
         NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
-                
-#hystrix
-hystrix:
-    command:
-        default:
-            execution:
-                isolation:
-                    thread:
-                        timeoutInMilliseconds: 5000

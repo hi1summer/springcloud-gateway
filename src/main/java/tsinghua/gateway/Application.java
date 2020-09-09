@@ -2,10 +2,12 @@ package tsinghua.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ServerWebExchange;
+
+import reactor.core.publisher.Mono;
 
 @RestController
 @SpringBootApplication
@@ -14,9 +16,17 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @RequestMapping("/fallback")
-    ResponseEntity<String> errorPage() {
-        return new ResponseEntity<String>("Error",
-                HttpStatus.INTERNAL_SERVER_ERROR);
+    @Bean
+    KeyResolver ipResolver() {
+        return new KeyResolver() {
+
+            @Override
+            public Mono<String> resolve(ServerWebExchange exchange) {
+                String ipString = exchange.getRequest().getLocalAddress()
+                        .getAddress().getHostAddress();
+                System.out.println(ipString);
+                return Mono.just(ipString);
+            }
+        };
     }
 }
