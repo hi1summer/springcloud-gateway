@@ -18,12 +18,11 @@ spring:
             - Host=hic:9000
             filters:
             - StripPrefix=2
+            - name: Hystrix
+                args:
+                  name: fallbackcmd
+                  fallbackUri: forward:/fallback
             #- RewritePath=/hic/(?<segment>.*), /$\{segment}
-
-#ribbon
-hic:
-    ribbon:
-        NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
 
 #eureka
 eureka:
@@ -34,6 +33,17 @@ eureka:
             enabled: true
     instance:
         prefer-ip-address: true
-endpoints:
-    shutdown:
-        enabled: true
+
+#ribbon
+hic:
+    ribbon:
+        NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
+                
+#hystrix
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        timeoutInMilliseconds: 5000
