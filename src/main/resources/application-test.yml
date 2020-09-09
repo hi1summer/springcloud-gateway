@@ -1,6 +1,6 @@
 #basic
 server:
-  port: 9002
+  port: 9000
   
 #log4j2
 logging:
@@ -18,7 +18,7 @@ spring:
             uri: lb://hic
             predicates:
             - Path=/hic/v1/**
-            - Host=hic:9002
+            - Host=hic:9000
             filters:
             - StripPrefix=2
             - name: RequestRateLimiter
