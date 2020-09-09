@@ -24,12 +24,7 @@ spring:
             - Host=hic:9000
             filters:
             - StripPrefix=2
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 1
-                redis-rate-limiter.burstCapacity: 10
-                redis-rate-limiter.requestedTokens: 5
-                key-resolver: "#{@ipResolver}"
+
             #- RewritePath=/hic/(?<segment>.*), /$\{segment}
 
 #eureka
