@@ -8,6 +8,9 @@ logging:
 
 #spring cloud
 spring:
+  redis:
+      port: 6379
+      host: host.docker.internal
   cloud:
     gateway:
       routes:
@@ -40,8 +43,5 @@ hic:
     ribbon:
         NFLoadBalancerRuleClassName: com.netflix.loadbalancer.BestAvailableRule
         
-#redis
-spring:
-    redis:
-        port: 6379
-        host: host.docker.internal
+
+
