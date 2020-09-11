@@ -51,7 +51,7 @@ pipeline {
             steps {
                 script{
                     powershell "docker pull openzipkin/zipkin:latest"
-                    powershell "docker run -d -p 9411:9411 --name zipkin.${env.BUILD_ID} --restart=always openzipkin/zipkin"
+                    powershell "docker run -d -p 9411:9411 --name zipkin.${env.BUILD_ID} --restart=always openzipkin/zipkin:latest"
                 }
             }
         }
