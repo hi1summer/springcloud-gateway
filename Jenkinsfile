@@ -21,6 +21,19 @@ pipeline {
                 }
             }
         }
+        stage('cleanzipkin') {
+            steps {
+                script{
+                    try{
+                        powershell "docker stop \$(docker ps --filter name=zipkin -qa)"
+                        powershell "docker container rm \$(docker ps --filter name=zipkin -qa)"
+                    }
+                    catch(exc){
+                        echo 'no container'
+                    }
+                }
+            }
+        }
         stage('build') {
             steps {
                 bat "mvn clean package"
@@ -32,6 +45,14 @@ pipeline {
                       -Dsonar.projectKey=GATEWAY \
                       -Dsonar.host.url=http://localhost:1001 \
                       -Dsonar.login=8dbd1aa5aaecbf60711560ff1c458d4e0e3597fe"
+            }
+        }
+        stage('zipkin'){
+            steps {
+                script{
+                    image = docker.pull("openzipkin/zipkin:latest")
+                    image.run("-p 9411:9411 --name zipkin.${env.BUILD_ID} --restart=always")
+                }
             }
         }
         stage('docker') {
