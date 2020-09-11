@@ -50,8 +50,8 @@ pipeline {
         stage('zipkin'){
             steps {
                 script{
-                    image = docker.pull("openzipkin/zipkin:latest")
-                    image.run("-p 9411:9411 --name zipkin.${env.BUILD_ID} --restart=always")
+                    powershell "docker pull openzipkin/zipkin:latest")
+                    docker.run("-p 9411:9411 --name zipkin.${env.BUILD_ID} --restart=always openzipkin/zipkin")
                 }
             }
         }
