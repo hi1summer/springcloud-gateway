@@ -59,7 +59,7 @@ pipeline {
             steps {
                 script{
                     image = docker.build("gateway:${env.BUILD_ID}")
-                    image.run("-m 3G -p 9000:9000 --name gateway.${env.BUILD_ID} --restart=always")
+                    image.run("-p 9000:9000 --name gateway.${env.BUILD_ID} --restart=always")
                 }
             }
         }
