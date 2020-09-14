@@ -8,7 +8,7 @@
                         echo 'no redis'
                     }
                     powershell "docker pull redis:latest"
-                    powershell "docker run -d --name=redis -p 6379:6379 redis:latest"
+                    powershell "docker run -d --name=redis -p 6379:6379 --restart=always redis:latest"
                 }
             }
         }
