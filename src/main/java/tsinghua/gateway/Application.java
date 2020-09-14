@@ -20,8 +20,7 @@ public class Application {
 
     @GetMapping("/fallback")
     public ResponseEntity<Boolean> fallback() {
-        return new ResponseEntity<Boolean>(false,
-                HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<Boolean>(false, HttpStatus.TOO_MANY_REQUESTS);
     }
 
     @Bean
